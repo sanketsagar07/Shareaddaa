@@ -1,0 +1,292 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #09090b;
+  color: #fff;
+  font-family: var(--font-geist-sans), sans-serif;
+  padding: 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+}
+
+.logoIcon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.statusText {
+  color: #10b981;
+  font-size: 0.7rem;
+  font-family: var(--font-geist-mono), monospace;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  background-color: #10b981;
+  border-radius: 50%;
+}
+
+.card {
+  background-color: #18181b;
+  border: 1px solid #27272a;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 460px;
+  padding: 2.5rem 2.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.cardLogo {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem auto;
+  color: white;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #a1a1aa;
+  font-size: 0.875rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.labelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.label {
+  font-size: 0.75rem;
+  color: #d4d4d8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.labelHint {
+  font-size: 0.75rem;
+  color: #71717a;
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 1rem;
+  color: #71717a;
+}
+
+.input {
+  width: 100%;
+  background-color: #09090b;
+  border: 1px solid #27272a;
+  border-radius: 8px;
+  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  color: #fff;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 1px #8b5cf6;
+}
+
+.eyeButton {
+  position: absolute;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #71717a;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eyeButton:hover {
+  color: #d4d4d8;
+}
+
+.forgotPassword {
+  color: #8b5cf6;
+  font-size: 0.75rem;
+  text-decoration: none;
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.forgotPassword:hover {
+  text-decoration: underline;
+}
+
+.checkboxRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #8b5cf6;
+  cursor: pointer;
+  background-color: #09090b;
+  border: 1px solid #27272a;
+  border-radius: 4px;
+}
+
+.checkboxLabel {
+  font-size: 0.75rem;
+  color: #d4d4d8;
+  cursor: pointer;
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.checkboxLabel a {
+  color: #8b5cf6;
+  text-decoration: none;
+}
+
+.checkboxLabel a:hover {
+  text-decoration: underline;
+}
+
+.submitButton {
+  width: 100%;
+  background-color: #8b5cf6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.875rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease;
+  margin-bottom: 2rem;
+}
+
+.submitButton:hover {
+  background-color: #7c3aed;
+}
+
+.footerText {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #a1a1aa;
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.footerLink {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  margin-left: 0.25rem;
+}
+
+.footerLink:hover {
+  color: #8b5cf6;
+}
+
+.securityFooter {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: #71717a;
+  font-family: var(--font-geist-mono), monospace;
+  letter-spacing: 1px;
+}
+
+.securityBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #10b981;
+}
+
+.securityBadge.blue {
+  color: #3b82f6;
+}
+
+.bottomLinks {
+  margin-top: 4rem;
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.75rem;
+  color: #71717a;
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.bottomLinks a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.bottomLinks a:hover {
+  color: #d4d4d8;
+}
