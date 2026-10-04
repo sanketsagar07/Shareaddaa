@@ -5,8 +5,8 @@ export default function AlbumsPage() {
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#131316', color: '#ffffff' }}>
       <Sidebar />
       <main style={{ flex: 1, padding: '2rem' }}>
-        <h1>Album & Media</h1>
-        <p style={{ marginTop: '1rem', color: '#a1a1aa' }}>Your albums and media files will appear here.</p>
+        <h1>File Manager</h1>
+        <p style={{ marginTop: '1rem', color: '#a1a1aa' }}>Your files and folders will appear here.</p>
       </main>
     </div>
   );

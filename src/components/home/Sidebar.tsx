@@ -13,13 +13,16 @@ import { onAuthStateChanged } from 'firebase/auth';
 export default function Sidebar() {
   const pathname = usePathname();
   const [userName, setUserName] = useState('Loading...');
+  const [userPhoto, setUserPhoto] = useState<string | null>(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUserName(user.displayName || user.email || 'User');
+        setUserPhoto(user.photoURL);
       } else {
         setUserName('Guest');
+        setUserPhoto(null);
       }
     });
     return () => unsubscribe();
@@ -45,7 +48,7 @@ export default function Sidebar() {
         </Link>
         <Link href="/albums" className={`nav-item ${pathname === '/albums' ? 'active' : ''}`}>
           <ImageIcon size={20} />
-          <span>Album & Media</span>
+          <span>File Manager</span>
         </Link>
         <Link href="/upgrade" className={`nav-item ${pathname === '/upgrade' ? 'active' : ''}`}>
           <Zap size={20} />
@@ -58,13 +61,13 @@ export default function Sidebar() {
       </nav>
 
       <div className="user-profile">
-        <Image
-          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face"
+        <img
+          src={userPhoto || logoImg.src}
           alt="User avatar"
           width={40}
           height={40}
           className="user-avatar"
-          unoptimized
+          style={{ borderRadius: '50%', objectFit: 'cover' }}
         />
         <div className="user-info">
           <p className="user-name">{userName}</p>

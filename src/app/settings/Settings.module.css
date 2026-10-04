@@ -1,0 +1,335 @@
+.settingsPage {
+    display: flex;
+    min-height: 100vh;
+    background: #131316;
+    color: #ffffff;
+}
+
+.settingsMain {
+    flex: 1;
+    padding: 40px;
+}
+
+.settingsContainer {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+/* Header Row */
+.settingsHeaderRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.headerIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: #1c1c21;
+    border-radius: 8px;
+    border: 1px solid #2d2d33;
+    color: #a78bfa; /* purple tint for icon */
+}
+
+.headerLeft h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.headerLeft p {
+    margin: 4px 0 0 0;
+    color: #a1a1aa;
+    font-size: 14px;
+}
+
+.verifiedBadge {
+    background: #27272a;
+    border: 1px solid #3f3f46;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+/* Avatar Card */
+.avatarCard {
+    background: #1c1c21;
+    border: 1px solid #2d2d33;
+    border-radius: 12px;
+    padding: 24px 30px;
+    margin-bottom: 30px;
+}
+
+.avatarSectionWrapper {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.avatarImageContainer {
+    position: relative;
+    width: 90px;
+    height: 90px;
+}
+
+.avatarSquareImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    background: #27272a;
+}
+
+.avatarSquarePlaceholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: 600;
+    color: #ffffff;
+    background: #27272a;
+    border-radius: 12px;
+}
+
+.statusDot {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    width: 18px;
+    height: 18px;
+    background: #34d399; /* green dot */
+    border: 3px solid #1c1c21;
+    border-radius: 50%;
+}
+
+.avatarInfo h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatarInfo h2 span {
+    font-size: 12px;
+    font-weight: 400;
+    color: #71717a;
+}
+
+.avatarInfo p {
+    margin: 6px 0 16px 0;
+    color: #a1a1aa;
+    font-size: 14px;
+}
+
+.avatarActions {
+    display: flex;
+    gap: 12px;
+}
+
+.btnChange {
+    background: #27272a;
+    border: 1px solid #3f3f46;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btnChange:hover:not(:disabled) {
+    background: #3f3f46;
+}
+
+.btnSave {
+    background: #27272a;
+    border: 1px solid #3f3f46;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btnSave:hover:not(:disabled) {
+    background: #059669; /* green */
+    border-color: #059669;
+}
+
+.btnRemove {
+    background: #451a1a;
+    border: 1px solid #7f1d1d;
+    color: #fca5a5;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btnRemove:hover {
+    background: #7f1d1d;
+    color: #ffffff;
+}
+
+/* Form Grid */
+.formGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 24px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.inputWrapper input {
+    width: 100%;
+    background: #1c1c21;
+    border: 1px solid #2d2d33;
+    border-radius: 8px;
+    padding: 14px 16px;
+    padding-right: 40px;
+    color: #ffffff;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.inputWrapper input:focus {
+    border-color: #52525b;
+}
+
+.inputWrapper input:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.inputIcon, .verifiedIcon {
+    position: absolute;
+    right: 16px;
+    color: #71717a;
+}
+
+.verifiedIcon {
+    color: #34d399; /* green check */
+}
+
+/* Utils */
+.message {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.success {
+    color: #10b981;
+}
+
+.warning {
+    color: #f59e0b;
+}
+
+/* Logout Section */
+
+.logoutSection {
+    margin-top: 30px;
+    background: #1c1c21;
+    border: 1px solid #2d2d33;
+    border-radius: 12px;
+    padding: 24px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logoutLeft {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.logoutIconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.powerIcon {
+    color: #ff7b72; /* matches the orange/red in the image */
+}
+
+.logoutText h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.logoutText p {
+    margin: 4px 0 0 0;
+    color: #8b949e;
+    font-size: 13px;
+}
+
+.logoutButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    background: #21262d;
+    color: #c9d1d9;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.logoutButton:hover {
+    background: #ef4444;
+    border-color: #ef4444;
+    color: #ffffff;
+}
