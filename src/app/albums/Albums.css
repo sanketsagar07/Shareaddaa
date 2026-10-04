@@ -1,0 +1,159 @@
+.albums-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #131316;
+  color: #ffffff;
+}
+
+.albums-main {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+}
+
+.albums-title {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.albums-subtitle {
+  color: #a1a1aa;
+  margin-bottom: 2rem;
+}
+
+.albums-status {
+  color: #a1a1aa;
+}
+
+.albums-error {
+  color: #ef4444;
+}
+
+.albums-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.document-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1a1a1f;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #2d2d34;
+}
+
+.document-info-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+.document-details {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.document-name {
+  font-weight: 600;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #ffffff;
+}
+
+.document-meta {
+  color: #a1a1aa;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.document-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.btn-download {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.btn-download:hover {
+  background-color: rgba(139, 92, 246, 0.2);
+}
+
+.btn-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background-color: rgba(239, 68, 68, 0.2);
+}
+
+/* Light Theme Overrides */
+html[data-theme="light"] .albums-container {
+  background-color: #fafafa;
+  color: #111827;
+}
+
+html[data-theme="light"] .albums-title {
+  color: #111827;
+}
+
+html[data-theme="light"] .albums-subtitle,
+html[data-theme="light"] .albums-status,
+html[data-theme="light"] .document-meta {
+  color: #4b5563;
+}
+
+html[data-theme="light"] .document-card {
+  background-color: #ffffff;
+  border-color: #e5e7eb;
+}
+
+html[data-theme="light"] .document-name {
+  color: #111827;
+}
+
+html[data-theme="light"] .btn-download {
+  background-color: #f3f4f6;
+  border-color: #d1d5db;
+  color: #111827;
+}
+
+html[data-theme="light"] .btn-download:hover {
+  background-color: #e5e7eb;
+}
+
+html[data-theme="light"] .btn-delete {
+  background-color: #fee2e2;
+  border-color: #fca5a5;
+  color: #ef4444;
+}
+
+html[data-theme="light"] .btn-delete:hover {
+  background-color: #fecaca;
+}

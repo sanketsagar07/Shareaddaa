@@ -1,0 +1,20 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Other collections (like shares) can keep their existing rules or be open if not specified.
+    match /shares/{shareId} {
+      allow read, write: if true;
+      
+      match /files/{fileId} {
+        allow read, write: if true;
+      }
+    }
+    
+    // User's received documents rules
+    match /users/{userId}/receivedDocuments/{documentId} {
+      allow read, create, delete: if request.auth != null && request.auth.uid == userId;
+      allow update: if false; // Not needed
+    }
+  }
+}

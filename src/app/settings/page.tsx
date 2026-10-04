@@ -119,7 +119,7 @@ export default function SettingsPage() {
 
       setPhotoURL(downloadURL);
 
-      alert("Profile photo updated successfully.");
+
     } catch (error) {
       console.error(error);
       alert("Failed to update profile photo.");

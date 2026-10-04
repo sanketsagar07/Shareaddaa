@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import { Download, QrCode, FileIcon } from 'lucide-react';
-import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
+import { doc, getDoc, collection, getDocs, addDoc, serverTimestamp } from 'firebase/firestore';
 import { ref, getBlob } from 'firebase/storage';
-import { db, storage } from '@/app/auth/firebase';
+import { db, storage, auth } from '@/app/auth/firebase';
 import './ReceiveArea.css';
 
 export default function ReceiveArea() {
@@ -77,6 +77,24 @@ export default function ReceiveArea() {
 
         if (allFiles.length > 0) {
           setReceivedFiles(allFiles);
+          
+          // Save received files to user account if logged in
+          if (auth.currentUser) {
+            const uid = auth.currentUser.uid;
+            for (const file of allFiles) {
+              try {
+                await addDoc(collection(db, `users/${uid}/receivedDocuments`), {
+                  fileName: file.fileName || 'Unknown File',
+                  filePath: file.filePath || null,
+                  downloadURL: file.downloadURL || null,
+                  receivedAt: serverTimestamp(),
+                  shareCode: code.toUpperCase()
+                });
+              } catch (e) {
+                console.error("Failed to save received document to user account:", e);
+              }
+            }
+          }
         } else {
           setError("No files found for this code.");
         }
