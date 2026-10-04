@@ -6,7 +6,7 @@ import { auth, storage } from "@/app/auth/firebase";
 import { updateProfile, signOut, onAuthStateChanged } from "firebase/auth";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useRouter } from "next/navigation";
-import { Power, LogOut, ShieldCheck, Edit2, BadgeCheck, Palette, Moon, Sun, Check } from "lucide-react";
+import { Power, LogOut, LogIn, ShieldCheck, Edit2, BadgeCheck, Palette, Moon, Sun, Check } from "lucide-react";
 import styles from "./Settings.module.css";
 
 export default function SettingsPage() {
@@ -18,6 +18,7 @@ export default function SettingsPage() {
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
   const [theme, setTheme] = useState("dark");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
@@ -33,6 +34,9 @@ export default function SettingsPage() {
         setOriginalName(user.displayName || "");
         setEmail(user.email || "");
         setPhotoURL(user.photoURL || "");
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
       }
     });
 
@@ -318,18 +322,29 @@ export default function SettingsPage() {
                 <Power className={styles.powerIcon} size={24} />
               </div>
               <div className={styles.logoutText}>
-                <h3>Session & Account Termination</h3>
-                <p>Terminate current mesh handshake and sign out from this machine</p>
+                <h3>{isLoggedIn ? "Session & Account Termination" : "Account Access"}</h3>
+                <p>{isLoggedIn ? "Sign out from your current account on this device." : "Log in to access your account and manage your files."}</p>
               </div>
             </div>
-            <button
-              type="button"
-              className={styles.logoutButton}
-              onClick={handleLogout}
-            >
-              <LogOut size={16} />
-              Sign Out
-            </button>
+            {isLoggedIn ? (
+              <button
+                type="button"
+                className={styles.logoutButton}
+                onClick={handleLogout}
+              >
+                <LogOut size={16} />
+                Sign Out
+              </button>
+            ) : (
+              <button
+                type="button"
+                className={styles.logoutButton}
+                onClick={() => router.push("/auth/login")}
+              >
+                <LogIn size={16} />
+                Login
+              </button>
+            )}
           </section>
         </div>
       </main>
