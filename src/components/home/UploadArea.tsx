@@ -85,11 +85,16 @@ export default function UploadArea() {
 
       await setDoc(doc(db, "shares", code), {
         code,
+        ownerId: user.uid,
+        createdAt: serverTimestamp(),
+      }, { merge: true });
+
+      const fileId = Math.random().toString(36).substring(2, 8).toUpperCase();
+      await setDoc(doc(db, `shares/${code}/files`, fileId), {
         fileName: file.name,
         filePath,
         downloadURL,
-        ownerId: user.uid,
-        createdAt: serverTimestamp(),
+        size: file.size,
       });
 
       console.log("File uploaded successfully");
@@ -99,6 +104,7 @@ export default function UploadArea() {
       return {
         code,
         filePath,
+        fileId,
       };
 
     } catch (error) {
@@ -173,7 +179,7 @@ export default function UploadArea() {
                 const newCode = Math.random().toString(36).substring(2, 8).toUpperCase();
                 setShareCode(newCode);
                 setShowShareUI(true);
-                const uploadedFiles: { code: string; filePath: string }[] = [];
+                const uploadedFiles: { code: string; filePath: string; fileId: string }[] = [];
 
                 for (const file of files) {
                   const result = await handleFileUpload(file, newCode);
@@ -182,12 +188,16 @@ export default function UploadArea() {
                   }
                 }
 
-
                 setTimeout(async () => {
                   try {
                     for (const item of uploadedFiles) {
                       const fileRef = ref(storage, item.filePath);
-                      await deleteObject(fileRef);
+                      try {
+                        await deleteObject(fileRef);
+                      } catch (e) {
+                        // ignore
+                      }
+                      await deleteDoc(doc(db, `shares/${newCode}/files`, item.fileId));
                     }
                     await deleteDoc(doc(db, "shares", newCode));
                     alert("Share time out. Files have been deleted.");
@@ -322,7 +332,7 @@ export default function UploadArea() {
                 <div className="payload-info">
                   <div className="payload-title-row">
                     <span className="payload-name">{file.name}</span>
-                    <span className="payload-tag">READY TO BEAM</span>
+                    <span className="payload-tag">READY TO SHARE</span>
                   </div>
                   <div className="payload-meta">
                     {formatBytes(file.size)} • 0 MB/s • ETA --s left
@@ -336,9 +346,6 @@ export default function UploadArea() {
 
                 {!showShareUI && (
                   <div className="payload-controls">
-                    <button className="control-btn" title="Pause">
-                      <Pause size={18} />
-                    </button>
                     <button className="control-btn" onClick={() => removeFile(index)} title="Remove">
                       <X size={18} />
                     </button>

@@ -20,15 +20,34 @@ export const deleteExpiredFiles = onSchedule("every 1 minutes", async () => {
         const data = document.data();
 
         try {
+            // Legacy support for single-file shares
             if (data.filePath) {
-                await bucket.file(data.filePath).delete();
+                try {
+                    await bucket.file(data.filePath).delete();
+                } catch (e) {
+                    // Ignore if already deleted
+                }
+            }
+
+            // New multi-file share support
+            const filesSnapshot = await document.ref.collection("files").get();
+            for (const fileDoc of filesSnapshot.docs) {
+                const fileData = fileDoc.data();
+                if (fileData.filePath) {
+                    try {
+                        await bucket.file(fileData.filePath).delete();
+                    } catch (e) {
+                        // Ignore
+                    }
+                }
+                await fileDoc.ref.delete();
             }
 
             await document.ref.delete();
 
-            console.log(`Deleted expired file: ${data.filePath}`);
+            console.log(`Deleted expired share: ${document.id}`);
         } catch (error) {
-            console.error(`Failed to delete: ${data.filePath}`, error);
+            console.error(`Failed to delete share: ${document.id}`, error);
         }
     }
 });
