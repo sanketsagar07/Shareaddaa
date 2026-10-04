@@ -4,7 +4,7 @@ import ReceiveArea from "@/components/home/ReceiveArea";
 
 export default function Home() {
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#131316', color: '#ffffff' }}>
+    <div style={{ display: 'flex', minHeight: '100vh' }}>
       <Sidebar />
       <main style={{ flex: 1, padding: '2rem', display: 'flex', gap: '2rem' }}>
         <div style={{ flex: 2 }}>

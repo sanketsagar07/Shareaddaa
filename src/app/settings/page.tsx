@@ -6,7 +6,7 @@ import { auth, storage } from "@/app/auth/firebase";
 import { updateProfile, signOut, onAuthStateChanged } from "firebase/auth";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useRouter } from "next/navigation";
-import { Power, LogOut, ShieldCheck, Edit2, BadgeCheck } from "lucide-react";
+import { Power, LogOut, ShieldCheck, Edit2, BadgeCheck, Palette, Moon, Sun, Check } from "lucide-react";
 import styles from "./Settings.module.css";
 
 export default function SettingsPage() {
@@ -17,11 +17,16 @@ export default function SettingsPage() {
   const [saving, setSaving] = useState(false);
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
+  const [theme, setTheme] = useState("dark");
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
   useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    setTheme(savedTheme);
+    document.documentElement.setAttribute("data-theme", savedTheme);
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setName(user.displayName || "");
@@ -175,7 +180,6 @@ export default function SettingsPage() {
                     {name ? name.charAt(0).toUpperCase() : "U"}
                   </div>
                 )}
-                <div className={styles.statusDot}></div>
               </div>
               <div className={styles.avatarInfo}>
                 <h2>{name} <span></span></h2>
@@ -238,6 +242,75 @@ export default function SettingsPage() {
               {message.text}
             </p>
           )}
+
+          <section className={styles.themeSection}>
+            <div className={styles.themeHeader}>
+              <div className={styles.headerIcon}>
+                <Palette className={styles.paletteIcon} size={24} />
+              </div>
+              <div>
+                <h3>Appearance & Theme</h3>
+                <p>Customize the visual appearance of the ShareAddaa interface. Switch between Dark Enclave and Light Studio modes.</p>
+              </div>
+            </div>
+
+            <div className={styles.themeCards}>
+              <div
+                className={`${styles.themeCard} ${theme === 'dark' ? styles.active : ''}`}
+                onClick={() => {
+                  setTheme('dark');
+                  localStorage.setItem('theme', 'dark');
+                  document.documentElement.setAttribute('data-theme', 'dark');
+                }}
+              >
+                <div className={styles.themeCardHeader}>
+                  <div className={styles.themeCardTitle}>
+                    <Moon size={18} /> Dark Mode
+                  </div>
+                  {theme === 'dark' && <span className={styles.activeBadge}><Check size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '2px' }} /> Active</span>}
+                </div>
+                <div className={styles.previewBox}>
+                  {/* Mock UI lines */}
+                  <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
+                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#8b5cf6' }}></div>
+                    <div style={{ width: '40px', height: '8px', borderRadius: '4px', background: '#3f3f46' }}></div>
+                  </div>
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    <div style={{ width: '40%', height: '20px', borderRadius: '4px', background: '#27272a', borderTop: '2px solid #38bdf8' }}></div>
+                    <div style={{ width: '60%', height: '20px', borderRadius: '4px', background: '#27272a', borderTop: '2px solid #c084fc' }}></div>
+                  </div>
+                </div>
+                <p className={styles.themeDesc}>High-contrast obsidian theme optimized for low-light environments and long encrypted transfer sessions.</p>
+              </div>
+
+              <div
+                className={`${styles.themeCard} ${theme === 'light' ? styles.active : ''}`}
+                onClick={() => {
+                  setTheme('light');
+                  localStorage.setItem('theme', 'light');
+                  document.documentElement.setAttribute('data-theme', 'light');
+                }}
+              >
+                <div className={styles.themeCardHeader}>
+                  <div className={styles.themeCardTitle}>
+                    <Sun size={18} /> Light Mode
+                  </div>
+                  {theme === 'light' && <span className={styles.activeBadge}><Check size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '2px' }} /> Active</span>}
+                </div>
+                <div className={`${styles.previewBox} ${styles.lightPreviewBox}`}>
+                  <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
+                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#8b5cf6' }}></div>
+                    <div style={{ width: '40px', height: '8px', borderRadius: '4px', background: '#d1d5db' }}></div>
+                  </div>
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    <div style={{ width: '40%', height: '20px', borderRadius: '4px', background: '#ffffff', borderTop: '2px solid #38bdf8' }}></div>
+                    <div style={{ width: '60%', height: '20px', borderRadius: '4px', background: '#ffffff', borderTop: '2px solid #c084fc' }}></div>
+                  </div>
+                </div>
+                <p className={styles.themeDesc}>Clean, high-clarity daylight theme designed for high-ambient lighting office environments.</p>
+              </div>
+            </div>
+          </section>
 
           <section className={styles.logoutSection}>
             <div className={styles.logoutLeft}>

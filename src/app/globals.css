@@ -17,3 +17,243 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+/* Light Theme Overrides */
+html[data-theme="light"] body {
+  background-color: #fafafa !important;
+  /* "something whitees" */
+  color: #111827 !important;
+}
+
+/* Sidebar Overrides */
+html[data-theme="light"] .sidebar {
+  background-color: #ffffff !important;
+  border-right: 1px solid #e5e7eb !important;
+}
+
+html[data-theme="light"] .logo-text {
+  color: #111827 !important;
+}
+
+html[data-theme="light"] .nav-item {
+  color: #4b5563 !important;
+}
+
+html[data-theme="light"] .nav-item:hover,
+html[data-theme="light"] .nav-item.active {
+  background-color: #f3f4f6 !important;
+  color: #111827 !important;
+}
+
+html[data-theme="light"] .user-profile {
+  background-color: #f9fafb !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+html[data-theme="light"] .user-name {
+  color: #111827 !important;
+}
+
+html[data-theme="light"] .user-status {
+  color: #6b7280 !important;
+}
+
+html[data-theme="light"] .user-dropdown-icon {
+  color: #9ca3af !important;
+}
+
+/* Settings Page Overrides */
+html[data-theme="light"] .settingsMain h1,
+html[data-theme="light"] .settingsMain h2,
+html[data-theme="light"] .settingsMain h3,
+html[data-theme="light"] .settingsMain label {
+  color: #111827 !important;
+}
+
+html[data-theme="light"] .settingsMain p,
+html[data-theme="light"] .themeDesc {
+  color: #4b5563 !important;
+}
+
+html[data-theme="light"] section,
+html[data-theme="light"] .themeCard {
+  background-color: #ffffff !important;
+  border-color: #e5e7eb !important;
+}
+
+html[data-theme="light"] .headerIcon {
+  background: #f3f4f6 !important;
+  border-color: #e5e7eb !important;
+}
+
+html[data-theme="light"] .verifiedBadge {
+  background: #f3f4f6 !important;
+  border-color: #e5e7eb !important;
+  color: #111827 !important;
+}
+
+html[data-theme="light"] input {
+  background-color: #f9fafb !important;
+  border-color: #d1d5db !important;
+  color: #111827 !important;
+}
+
+html[data-theme="light"] .btnChange,
+html[data-theme="light"] .btnSave {
+  background: #f3f4f6 !important;
+  border-color: #d1d5db !important;
+  color: #111827 !important;
+}
+
+html[data-theme="light"] .avatarSquarePlaceholder {
+  background: #e5e7eb !important;
+  color: #4b5563 !important;
+}
+
+html[data-theme="light"] .logoutButton {
+  background: #fee2e2 !important;
+  border-color: #fca5a5 !important;
+  color: #ef4444 !important;
+}
+
+html[data-theme="light"] .themeCardTitle {
+  color: #111827 !important;
+}
+
+/* UploadArea Overrides */
+html[data-theme="light"] .upload-hub-container,
+html[data-theme="light"] .hub-title {
+  color: #111827 !important;
+}
+
+html[data-theme="light"] .hub-subtitle {
+  color: #4b5563 !important;
+}
+
+html[data-theme="light"] .dropzone {
+  background-color: #ffffff !important;
+  border-color: #e5e7eb !important;
+}
+
+html[data-theme="light"] .dropzone:hover {
+  background-color: #f9fafb !important;
+  border-color: #d1d5db !important;
+}
+
+html[data-theme="light"] .dropzone-icon {
+  background-color: #f3f4f6 !important;
+}
+
+html[data-theme="light"] .badge {
+  background-color: #f9fafb !important;
+  border-color: #e5e7eb !important;
+  color: #4b5563 !important;
+}
+
+html[data-theme="light"] .action-button {
+  background-color: #ffffff !important;
+  border-color: #d1d5db !important;
+  color: #4b5563 !important;
+}
+
+html[data-theme="light"] .action-button:hover {
+  background-color: #f3f4f6 !important;
+  color: #111827 !important;
+}
+
+html[data-theme="light"] .staged-header,
+html[data-theme="light"] .payload-meta {
+  color: #4b5563 !important;
+}
+
+html[data-theme="light"] .payload-card,
+html[data-theme="light"] .share-ui-container {
+  background-color: #ffffff !important;
+  border-color: #e5e7eb !important;
+}
+
+html[data-theme="light"] .payload-icon {
+  background-color: #f3f4f6 !important;
+}
+
+html[data-theme="light"] .payload-name,
+html[data-theme="light"] .share-ui-title {
+  color: #111827 !important;
+}
+
+html[data-theme="light"] .share-link-box {
+  background-color: #f9fafb !important;
+  border-color: #e5e7eb !important;
+}
+
+html[data-theme="light"] .share-link-url {
+  color: #4b5563 !important;
+}
+
+html[data-theme="light"] .matrix-toggle {
+  background-color: #e5e7eb !important;
+}
+
+html[data-theme="light"] .toggle-btn {
+  color: #4b5563 !important;
+}
+
+html[data-theme="light"] .toggle-btn.active {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+}
+
+html[data-theme="light"] .qr-container {
+  background-color: #f9fafb !important;
+  border-color: #e5e7eb !important;
+}
+
+html[data-theme="light"] .bottom-action-btn {
+  background-color: #ffffff !important;
+  border-color: #e5e7eb !important;
+  color: #4b5563 !important;
+}
+
+html[data-theme="light"] .bottom-action-btn:hover {
+  background-color: #f9fafb !important;
+  color: #111827 !important;
+}
+
+/* ReceiveArea Overrides */
+html[data-theme="light"] .receive-area-container {
+  background-color: #ffffff !important;
+  border-color: #e5e7eb !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+html[data-theme="light"] .receive-area-container h2 {
+  color: #111827 !important;
+}
+
+html[data-theme="light"] .receive-area-container p {
+  color: #4b5563 !important;
+}
+
+html[data-theme="light"] .otp-input {
+  background-color: #f9fafb !important;
+  border-color: #d1d5db !important;
+  color: #111827 !important;
+}
+
+html[data-theme="light"] .received-files-section h3 {
+  color: #4b5563 !important;
+}
+
+html[data-theme="light"] .received-file-card {
+  background-color: #f9fafb !important;
+  border-color: #e5e7eb !important;
+}
+
+html[data-theme="light"] .file-name {
+  color: #111827 !important;
+}
+
+html[data-theme="light"] .divider::before,
+html[data-theme="light"] .divider::after {
+  background-color: #d1d5db !important;
+}

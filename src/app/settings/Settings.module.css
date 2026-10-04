@@ -1,8 +1,6 @@
 .settingsPage {
     display: flex;
     min-height: 100vh;
-    background: #131316;
-    color: #ffffff;
 }
 
 .settingsMain {
@@ -39,7 +37,8 @@
     background: #1c1c21;
     border-radius: 8px;
     border: 1px solid #2d2d33;
-    color: #a78bfa; /* purple tint for icon */
+    color: #a78bfa;
+    /* purple tint for icon */
 }
 
 .headerLeft h1 {
@@ -93,6 +92,7 @@
     object-fit: cover;
     border-radius: 12px;
     background: #27272a;
+    border: 2px solid #8b5cf6;
 }
 
 .avatarSquarePlaceholder {
@@ -106,6 +106,7 @@
     color: #ffffff;
     background: #27272a;
     border-radius: 12px;
+    border: 2px solid #8b5cf6;
 }
 
 .statusDot {
@@ -114,7 +115,8 @@
     right: -4px;
     width: 18px;
     height: 18px;
-    background: #34d399; /* green dot */
+    background: #34d399;
+    /* green dot */
     border: 3px solid #1c1c21;
     border-radius: 50%;
 }
@@ -175,7 +177,8 @@
 }
 
 .btnSave:hover:not(:disabled) {
-    background: #059669; /* green */
+    background: #059669;
+    /* green */
     border-color: #059669;
 }
 
@@ -246,14 +249,16 @@
     cursor: not-allowed;
 }
 
-.inputIcon, .verifiedIcon {
+.inputIcon,
+.verifiedIcon {
     position: absolute;
     right: 16px;
     color: #71717a;
 }
 
 .verifiedIcon {
-    color: #34d399; /* green check */
+    color: #34d399;
+    /* green check */
 }
 
 /* Utils */
@@ -297,7 +302,8 @@
 }
 
 .powerIcon {
-    color: #ff7b72; /* matches the orange/red in the image */
+    color: #ff7b72;
+    /* matches the orange/red in the image */
 }
 
 .logoutText h3 {
@@ -332,4 +338,172 @@
     background: #ef4444;
     border-color: #ef4444;
     color: #ffffff;
+}
+
+/* Theme Section */
+.themeSection {
+    margin-top: 30px;
+    background: #1c1c21;
+    border: 1px solid #2d2d33;
+    border-radius: 12px;
+    padding: 24px 30px;
+}
+
+.themeHeader {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.paletteIcon {
+    color: #c084fc;
+}
+
+.themeHeader h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.themeHeader p {
+    margin: 4px 0 0 0;
+    font-size: 14px;
+    color: #a1a1aa;
+}
+
+.themeCards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.themeCard {
+    background: #131316;
+    border: 2px solid #2d2d33;
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.themeCard.active {
+    border-color: #8b5cf6;
+}
+
+.themeCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.themeCardTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.activeBadge {
+    background: #8b5cf6;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.previewBox {
+    background: #1c1c21;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 16px;
+    height: 80px;
+}
+
+.lightPreviewBox {
+    background: #e5e7eb;
+}
+
+.themeDesc {
+    font-size: 13px;
+    color: #a1a1aa;
+    line-height: 1.5;
+}
+
+/* Light Theme Mode Overrides (CSS Module Scope) */
+:global(html[data-theme="light"]) .headerLeft h1,
+:global(html[data-theme="light"]) .themeHeader h3,
+:global(html[data-theme="light"]) .avatarInfo h2,
+:global(html[data-theme="light"]) .formGroup label {
+    color: #111827 !important;
+}
+
+:global(html[data-theme="light"]) .headerLeft p,
+:global(html[data-theme="light"]) .themeHeader p,
+:global(html[data-theme="light"]) .avatarInfo p,
+:global(html[data-theme="light"]) .themeDesc {
+    color: #4b5563 !important;
+}
+
+:global(html[data-theme="light"]) .avatarCard,
+:global(html[data-theme="light"]) .themeSection,
+:global(html[data-theme="light"]) .logoutSection,
+:global(html[data-theme="light"]) .themeCard {
+    background-color: #ffffff !important;
+    border-color: #e5e7eb !important;
+}
+
+:global(html[data-theme="light"]) .headerIcon {
+    background: #f3f4f6 !important;
+    border-color: #e5e7eb !important;
+}
+
+:global(html[data-theme="light"]) .verifiedBadge {
+    background: #f3f4f6 !important;
+    border-color: #e5e7eb !important;
+    color: #111827 !important;
+}
+
+:global(html[data-theme="light"]) .inputWrapper input {
+    background-color: #f9fafb !important;
+    border-color: #d1d5db !important;
+    color: #111827 !important;
+}
+
+:global(html[data-theme="light"]) .btnChange,
+:global(html[data-theme="light"]) .btnSave {
+    background: #f3f4f6 !important;
+    border-color: #d1d5db !important;
+    color: #111827 !important;
+}
+
+:global(html[data-theme="light"]) .btnChange:hover:not(:disabled),
+:global(html[data-theme="light"]) .btnSave:hover:not(:disabled) {
+    background-color: #e5e7eb !important;
+}
+
+:global(html[data-theme="light"]) .avatarSquarePlaceholder {
+    background: #e5e7eb !important;
+    color: #4b5563 !important;
+}
+
+:global(html[data-theme="light"]) .logoutButton {
+    background: #fee2e2 !important;
+    border-color: #fca5a5 !important;
+    color: #ef4444 !important;
+}
+
+:global(html[data-theme="light"]) .logoutText h3,
+:global(html[data-theme="light"]) .themeCardTitle {
+    color: #111827 !important;
+}
+
+:global(html[data-theme="light"]) .logoutText p {
+    color: #4b5563 !important;
 }
