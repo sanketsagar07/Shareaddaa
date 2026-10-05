@@ -178,3 +178,76 @@
     font-size: 15px;
   }
 }
+
+.scanner-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.scanner-modal {
+  background-color: #1a1a1f;
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #2d2d34;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.scanner-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.scanner-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #fff;
+}
+
+.close-scanner-btn {
+  background: none;
+  border: none;
+  color: #a1a1aa;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.close-scanner-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.scanner-instruction {
+  color: #a1a1aa;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.qr-reader-container {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.qr-reader-container video {
+  border-radius: 12px;
+}

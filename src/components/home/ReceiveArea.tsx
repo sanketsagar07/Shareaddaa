@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Download, QrCode, FileIcon } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Download, QrCode, FileIcon, X } from 'lucide-react';
 import { doc, getDoc, collection, getDocs, addDoc, serverTimestamp } from 'firebase/firestore';
 import { ref, getBlob } from 'firebase/storage';
 import { db, storage, auth } from '@/app/auth/firebase';
 import './ReceiveArea.css';
+import { Html5Qrcode } from 'html5-qrcode';
 
 export default function ReceiveArea() {
   const [otp, setOtp] = useState('');
@@ -13,6 +14,56 @@ export default function ReceiveArea() {
   const [receivedFiles, setReceivedFiles] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isScanning, setIsScanning] = useState(false);
+
+  useEffect(() => {
+    let html5QrCode: Html5Qrcode | null = null;
+
+    if (isScanning) {
+      html5QrCode = new Html5Qrcode("qr-reader");
+      const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+
+      html5QrCode.start(
+        { facingMode: "environment" },
+        config,
+        (decodedText) => {
+          // Success
+          let code = decodedText;
+          if (decodedText.includes('/share/')) {
+            code = decodedText.split('/share/')[1].split('/')[0];
+          }
+          code = code.trim().toUpperCase();
+          
+          if (code) {
+            if (html5QrCode && html5QrCode.isScanning) {
+              html5QrCode.stop().then(() => {
+                setIsScanning(false);
+                setOtp(code);
+                handleReceive(code);
+              }).catch(err => {
+                console.error("Failed to stop scanner", err);
+                setIsScanning(false);
+                setOtp(code);
+                handleReceive(code);
+              });
+            }
+          }
+        },
+        (errorMessage) => {
+          // Ignore continuous scanning errors
+        }
+      ).catch((err) => {
+        console.error("Failed to start scanner:", err);
+        setError("Camera permission is required to scan QR codes.");
+        setIsScanning(false);
+      });
+    }
+
+    return () => {
+      if (html5QrCode && html5QrCode.isScanning) {
+        html5QrCode.stop().catch(console.error);
+      }
+    };
+  }, [isScanning]);
 
   const downloadFile = async (downloadURL: string, fileName: string, filePath?: string) => {
     try {
@@ -111,6 +162,21 @@ export default function ReceiveArea() {
 
   return (
     <div className="receive-area-container">
+      {isScanning && (
+        <div className="scanner-modal-overlay">
+          <div className="scanner-modal">
+            <div className="scanner-header">
+              <h3>Scan QR Code</h3>
+              <button onClick={() => setIsScanning(false)} className="close-scanner-btn">
+                <X size={24} />
+              </button>
+            </div>
+            <p className="scanner-instruction">Point your camera at the QR code</p>
+            <div id="qr-reader" className="qr-reader-container"></div>
+          </div>
+        </div>
+      )}
+
       <div className="receive-header">
         <div className="hub-tag">RECEIVE STATION</div>
       </div>
@@ -124,10 +190,8 @@ export default function ReceiveArea() {
         <button 
           className="scan-btn" 
           onClick={() => {
-            setIsScanning(!isScanning);
-            if (!isScanning) {
-              alert("QR Scanning functionality would open here.");
-            }
+            setError(null);
+            setIsScanning(true);
           }}
         >
           <QrCode size={20} />
