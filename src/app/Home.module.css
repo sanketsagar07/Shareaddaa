@@ -70,11 +70,18 @@
     flex-direction: column;
     padding: 1.5rem 1.25rem;
     gap: 1rem;
-    padding-bottom: calc(2rem + 70px); /* Account for bottom sidebar */
+    /* Account for bottom sidebar and safe area */
+    padding-bottom: calc(2rem + 70px + env(safe-area-inset-bottom));
   }
   
   .mobileToggle {
     display: flex;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .toggleBtn {
+    box-sizing: border-box;
   }
 
   .uploadContainer {
@@ -96,5 +103,21 @@
 
   .receiveContainer.active {
     display: block;
+  }
+}
+
+@media (max-width: 450px) {
+  .homeMain {
+    padding: 1rem 1rem;
+    padding-bottom: calc(3rem + 70px + env(safe-area-inset-bottom));
+  }
+  
+  .mobileToggle {
+    padding: 2px;
+  }
+  
+  .toggleBtn {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.8rem;
   }
 }

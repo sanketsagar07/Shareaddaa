@@ -15,8 +15,7 @@ export default function UploadArea() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const folderInputRef = useRef<HTMLInputElement>(null);
   const [shareCode, setShareCode] = useState("");
-  const [timeLeft, setTimeLeft] = useState(300);
-
+  const [timeLeft, setTimeLeft] = useState(600); // 10 minutes
 
   useEffect(() => {
     if (!showShareUI) return;
@@ -83,10 +82,13 @@ export default function UploadArea() {
 
       const downloadURL = await getDownloadURL(fileRef);
 
+      const expiresAt = Date.now() + 10 * 60 * 1000;
+
       await setDoc(doc(db, "shares", code), {
         code,
         ownerId: user.uid,
         createdAt: serverTimestamp(),
+        expiresAt,
       }, { merge: true });
 
       const fileId = Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -123,6 +125,8 @@ export default function UploadArea() {
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
   };
+
+  const isExpired = timeLeft === 0;
 
   return (
     <div className="upload-hub-container">
@@ -179,34 +183,10 @@ export default function UploadArea() {
                 const newCode = Math.random().toString(36).substring(2, 8).toUpperCase();
                 setShareCode(newCode);
                 setShowShareUI(true);
-                const uploadedFiles: { code: string; filePath: string; fileId: string }[] = [];
 
                 for (const file of files) {
-                  const result = await handleFileUpload(file, newCode);
-                  if (result) {
-                    uploadedFiles.push(result);
-                  }
+                  await handleFileUpload(file, newCode);
                 }
-
-                setTimeout(async () => {
-                  try {
-                    for (const item of uploadedFiles) {
-                      const fileRef = ref(storage, item.filePath);
-                      try {
-                        await deleteObject(fileRef);
-                      } catch (e) {
-                        // ignore
-                      }
-                      await deleteDoc(doc(db, `shares/${newCode}/files`, item.fileId));
-                    }
-                    await deleteDoc(doc(db, "shares", newCode));
-                    alert("Share time out. Files have been deleted.");
-                    window.location.reload();
-                  } catch (error) {
-                    console.error("Timeout deletion failed:", error);
-                  }
-                }, 5 * 60 * 1000);
-
               }}
             >
               <CloudUpload size={20} />
@@ -228,24 +208,31 @@ export default function UploadArea() {
             </div>
             <div className="share-ui-active-badge">
               <span className="status-dot"></span>
-              Active for {Math.floor(timeLeft / 60)}:
-              {String(timeLeft % 60).padStart(2, "0")}
+              {isExpired ? (
+                <span style={{ color: '#ef4444' }}>Link Expired</span>
+              ) : (
+                <>Active for {Math.floor(timeLeft / 60).toString().padStart(2, "0")}:{String(timeLeft % 60).padStart(2, "0")}</>
+              )}
             </div>
           </div>
 
           <div className="share-ui-section">
             <div className="share-ui-section-title">DIRECT ACCESS LINK</div>
-            <div className="share-link-box">
+            <div className="share-link-box" style={{ opacity: isExpired ? 0.5 : 1 }}>
               <div className="share-link-url">
                 <Link2 size={16} color="#71717a" /> {typeof window !== 'undefined' ? `${window.location.origin}/share/${shareCode}` : `https://beamshare.io/share/${shareCode}`}
               </div>
-              <button className="copy-btn" onClick={() => navigator.clipboard.writeText(typeof window !== 'undefined' ? `${window.location.origin}/share/${shareCode}` : `https://beamshare.io/share/${shareCode}`)}>
+              <button 
+                className="copy-btn" 
+                disabled={isExpired}
+                onClick={() => navigator.clipboard.writeText(typeof window !== 'undefined' ? `${window.location.origin}/share/${shareCode}` : `https://beamshare.io/share/${shareCode}`)}
+              >
                 <Copy size={14} /> COPY
               </button>
             </div>
           </div>
 
-          <div className="share-ui-section">
+          <div className="share-ui-section" style={{ opacity: isExpired ? 0.5 : 1 }}>
             <div className="qr-container">
               <div className="qr-box">
                 <QRCodeSVG
@@ -260,18 +247,17 @@ export default function UploadArea() {
             </div>
           </div>
 
-          <div className="share-ui-section">
+          <div className="share-ui-section" style={{ opacity: isExpired ? 0.5 : 1 }}>
             <div className="share-ui-section-title centered">MANUAL TERMINAL KEY</div>
             <div className="terminal-key-box">
               <div className="terminal-key-text" style={{ letterSpacing: '4px' }}>
                 {shareCode}
               </div>
-              <button className="key-copy-btn" onClick={() => navigator.clipboard.writeText(shareCode)}>
+              <button className="key-copy-btn" disabled={isExpired} onClick={() => navigator.clipboard.writeText(shareCode)}>
                 <Copy size={16} />
               </button>
             </div>
           </div>
-
 
         </div>
       )}

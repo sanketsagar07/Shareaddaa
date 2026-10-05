@@ -164,3 +164,17 @@
   font-size: 12px;
   color: #10b981;
 }
+
+@media (max-width: 450px) {
+  .receive-area-container {
+    padding: 16px;
+  }
+  .otp-input {
+    font-size: 16px;
+    padding: 12px;
+  }
+  .receive-btn {
+    padding: 12px;
+    font-size: 15px;
+  }
+}

@@ -9,11 +9,11 @@ const db = getFirestore();
 const bucket = getStorage().bucket();
 
 export const deleteExpiredFiles = onSchedule("every 1 minutes", async () => {
-    const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000);
+    const now = Date.now();
 
     const snapshot = await db
         .collection("shares")
-        .where("createdAt", "<=", tenMinutesAgo)
+        .where("expiresAt", "<=", now)
         .get();
 
     for (const document of snapshot.docs) {

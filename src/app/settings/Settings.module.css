@@ -507,3 +507,88 @@
 :global(html[data-theme="light"]) .logoutText p {
     color: #4b5563 !important;
 }
+
+/* Responsive adjustments */
+@media (max-width: 1050px) {
+    .settingsMain {
+        padding: 24px;
+        padding-bottom: calc(2rem + 70px + env(safe-area-inset-bottom));
+    }
+}
+
+@media (max-width: 768px) {
+    .formGrid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .themeCards {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 450px) {
+    .settingsMain {
+        padding: 16px;
+        padding-bottom: calc(3rem + 70px + env(safe-area-inset-bottom));
+    }
+    
+    .settingsHeaderRow {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .avatarCard,
+    .themeSection,
+    .logoutSection {
+        padding: 16px;
+        margin-bottom: 24px;
+    }
+    
+    .avatarSectionWrapper {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+    
+    .avatarInfo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .avatarActions {
+        justify-content: center;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    
+    .btnChange, .btnRemove, .btnSave {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    
+    .themeHeader {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+    
+    .logoutSection {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+        align-items: stretch;
+    }
+    
+    .logoutLeft {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .logoutButton {
+        justify-content: center;
+    }
+}
