@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ShareAddaa
 
-## Getting Started
+### Simple, Fast & Secure File Sharing
 
-First, run the development server:
+ShareAddaa is a modern file-sharing platform that allows users to securely send and receive files using temporary share links and share codes.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Built with **Next.js, TypeScript, Firebase, and Tailwind CSS**, ShareAddaa focuses on fast file transfer, temporary sharing, user accounts, and a clean responsive experience.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 📤 Send Files
+- Upload and share multiple files
+- Generate a unique share code
+- Generate a QR code for quick sharing
+- Generate a direct share link
+- Temporary file sharing
 
-## Learn More
+### 📥 Receive Files
+- Receive files using a share code
+- Scan QR codes to receive files
+- Open shared links without requiring an account
+- Download individual files
+- Download multiple files
 
-To learn more about Next.js, take a look at the following resources:
+### ⏱️ Temporary Sharing
+- Share links automatically expire
+- Expired shares are removed from Firebase
+- Automatic cleanup of expired files
+- Helps reduce unnecessary storage usage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 👤 User Accounts
+- Firebase Authentication
+- User profile management
+- Profile photo support
+- Saved received documents
+- Download and delete saved documents
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🎨 Modern UI
+- Dark Mode
+- Light Mode
+- Responsive design
+- Mobile-friendly interface
+- Modern SaaS-style UI
+- Responsive bottom navigation
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠️ Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Technology | Purpose |
+|---|---|
+| Next.js | Frontend framework |
+| TypeScript | Type-safe development |
+| Firebase Authentication | User authentication |
+| Firebase Firestore | Database |
+| Firebase Storage | File storage |
+| Firebase Cloud Functions | Automatic file cleanup |
+| CSS / Tailwind CSS | UI & responsive design |
+| Vercel | Deployment |
+
+---
+
+## 🏗️ Architecture
+
+```text
+                    ShareAddaa
+                        │
+        ┌───────────────┴───────────────┐
+        │                               │
+      Sender                          Receiver
+        │                               │
+    Select Files                   Share Code / QR
+        │                               │
+        ▼                               ▼
+   Firebase Storage              Receive Page
+        │                               │
+        └───────────────┬───────────────┘
+                        │
+                   Firestore
+                        │
+                        ▼
+                 Share Metadata
+                        │
+                        ▼
+              Cloud Functions
+                        │
+                        ▼
+                Expired File Cleanup
